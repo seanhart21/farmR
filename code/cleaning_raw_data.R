@@ -30,3 +30,22 @@ head(sq)
 
 ggplot(sq, aes(x=date,y=n)) + geom_point()+
   theme_classic()
+
+## just get cardinals
+
+card.id <- which(df[3,1:56]=="Cardinal") #13
+
+cd <- df %>% select(date, n = card.id)
+cd <- cd[4:nrow(cd),]
+
+head(cd)
+cd$n <- ifelse(is.na(cd$n), 0, as.numeric(cd$n))
+
+head(cd)
+
+ggplot(cd, aes(x=date,y=n)) + geom_point()+
+  theme_classic()
+
+
+
+
